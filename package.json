@@ -1,0 +1,24 @@
+{
+  "name": "framework",
+  "version": "1.0.0",
+  "description": "Framework for myself. It is pet-project.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Baxromxoja16/own-framework.git"
+  },
+  "author": "Baxromxoja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Baxromxoja16/own-framework/issues"
+  },
+  "homepage": "https://github.com/Baxromxoja16/own-framework#readme",
+  "devDependencies": {
+    "typescript": "^5.6.2",
+    "vite": "^5.4.6"
+  }
+}
