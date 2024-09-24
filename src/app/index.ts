@@ -1,18 +1,15 @@
 import { Router } from "../core/Router";
-import { AboutComponent } from "./AboutComponent";
-import { HomeComponent } from "./HomeComponent";
-import { MyComponent } from "./MyComponent";
+import { AboutComponent } from "./about/about.component";
+import { HomeComponent } from "./home/home.component";
 
 // Mount the component on a DOM element
 const rootElement = document.getElementById("app");
 if (rootElement) {
-//    const myComponent = new MyComponent(rootElement);
-//    myComponent.render();
    
    const router = new Router(rootElement);
 
    // Define routes
-   router.addRoute('/', MyComponent);
+   router.addRoute('/', HomeComponent);
    router.addRoute('/about', AboutComponent);
 
    // Load the initial route
