@@ -5,7 +5,7 @@ import { HomeComponent } from "./home/home.component";
 // Mount the component on a DOM element
 const rootElement = document.getElementById("app");
 if (rootElement) {
-   
+
    const router = new Router(rootElement);
 
    // Define routes
@@ -15,12 +15,18 @@ if (rootElement) {
    // Load the initial route
    router.navigate(location.pathname);
 
-   // Handle manual navigation using links
-   document.querySelectorAll('a[data-link]').forEach(link => {
-      link.addEventListener('click', (event) => {
+   rootElement.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+
+      // Check if the clicked element or any of its parents have routerLink
+      const link = target.closest('a[routerLink]');
+      console.log(link);
+      if (link) {
          event.preventDefault();
-         const target = event.target as HTMLAnchorElement;
-         router.navigate(target.getAttribute('href')!);
-      });
+         const path = link.getAttribute('routerLink');
+         if (path) {
+            router.navigate(path);
+         }
+      }
    });
 }

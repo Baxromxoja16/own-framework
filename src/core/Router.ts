@@ -6,7 +6,7 @@ interface Route {
 }
 
 export class Router {
-   private routes: Route[] = [];
+   private routes: { [key: string]: any } = {};
    private rootElement: HTMLElement;
 
    constructor(rootElement: HTMLElement) {
@@ -14,27 +14,29 @@ export class Router {
 
       // Listen for popstate event (triggered when the user navigates with the browser)
       window.addEventListener('popstate', () => {
-        return this.loadRoute(location.pathname)
+         this.navigate(location.pathname, false); // Don't pushState on back/forward
       });
    }
 
-   addRoute(path: string, component: new (element: HTMLElement) => Component) {
-      this.routes.push({ path, component });
+   addRoute(path: string, component: any) {
+      this.routes[path] = component;
    }
 
-   navigate(path: string) {
-      history.pushState(null, '', path);
-      this.loadRoute(path);
-   }
+   navigate(path: string, pushState: boolean = true) {
+      const component = this.routes[path];
 
-   private loadRoute(path: string) {
-      const matchedRoute = this.routes.find(route => route.path === path);
-      
-      if (matchedRoute) {
-         const componentInstance = new matchedRoute.component(this.rootElement);
-         componentInstance.render();
+      if (component) {
+         const instance = new component(this.rootElement);
+         instance.render(); // Render the component inside the root element
+
+         // Use pushState to update the URL without reloading
+         if (pushState) {
+            history.pushState({}, '', path);
+         }
       } else {
-         this.rootElement.innerHTML = `<h2>404 - Page Not Found</h2>`;
+         console.error(`No component found for the path: ${path}`);
       }
    }
+
+  
 }
