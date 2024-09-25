@@ -1,0 +1,9 @@
+a[routerLink] {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a[routerLink]:hover {
+    color: darkblue;
+}
