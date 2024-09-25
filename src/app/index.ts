@@ -20,7 +20,7 @@ if (rootElement) {
 
       // Check if the clicked element or any of its parents have routerLink
       const link = target.closest('a[routerLink]');
-      console.log(link);
+
       if (link) {
          event.preventDefault();
          const path = link.getAttribute('routerLink');
