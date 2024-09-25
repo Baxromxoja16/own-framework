@@ -1,8 +1,10 @@
-import { Component } from "../../core/Component";
-import { templateUrl } from "../../core/templateLoader";
+import {Component} from "../../core/Component";
 
-// Apply the decorator to specify the HTML file
-@templateUrl('/about/about.component.html')
-export class AboutComponent extends Component {
+@Component({
+    selector: '#app-about', // The DOM element where this component will be rendered
+    templateUrl: '/src/app/about/about.component.html',
+    styleUrls: ['/src/app/about/about.component.css']
+ })
+export class AboutComponent {
 
 }

@@ -1,9 +1,5 @@
-import { Component } from "./Component";
+import { ComponentDecorator } from "./ComponentDecorator";
 
-interface Route {
-   path: string;
-   component: new (element: HTMLElement) => Component;
-}
 
 export class Router {
    private routes: { [key: string]: any } = {};
@@ -22,12 +18,18 @@ export class Router {
       this.routes[path] = component;
    }
 
-   navigate(path: string, pushState: boolean = true) {
+   async navigate(path: string, pushState: boolean = true) {
       const component = this.routes[path];
-
+      
       if (component) {
+         // Clear the root element before rendering the new component
+         this.rootElement.innerHTML = ''; 
+
+         // Create an instance of the component
          const instance = new component(this.rootElement);
-         instance.render(); // Render the component inside the root element
+
+         // Load the template and styles
+         await this.loadTemplate(instance);
 
          // Use pushState to update the URL without reloading
          if (pushState) {
@@ -38,5 +40,13 @@ export class Router {
       }
    }
 
-  
+   private async loadTemplate(instance: any) {
+      // Assuming the instance has a templateUrl property set in the decorator
+      const templateUrl = instance.templateUrl;
+      const response = await fetch(templateUrl);
+      const html = await response.text();
+
+      // Set the HTML content
+      this.rootElement.innerHTML = html;
+   }
 }

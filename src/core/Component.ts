@@ -1,17 +1,8 @@
-export abstract class Component {
-   constructor(public element: HTMLElement) {
-      this.element = element
-   }
+import { ComponentDecorator } from "./ComponentDecorator";
 
-   render(): void {
-
-   }
-
-   onInit(): void {
-      // Component initialization logic
-   }
-
-   onDestroy(): void {
-      // Cleanup logic when component is destroyed
-   }
+export function Component(config: { selector: string; templateUrl: string; styleUrls?: string[] }) {
+   return function (constructor: any) {
+      const decorator = new ComponentDecorator(config);
+      return decorator.apply(constructor);
+   };
 }
