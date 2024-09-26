@@ -87,3 +87,7 @@ Copy code
 app/: Contains your application's components.
 core/: Contains the core framework logic such as the Component decorator, DI container, and routing system.
 services/: Contains the services that can be injected into components.
+
+## Contributing
+Feel free to submit issues or pull requests if you want to contribute to improving the framework!
+
