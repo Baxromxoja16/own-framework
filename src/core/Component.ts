@@ -6,7 +6,7 @@ export interface Metadata {
    styleUrls?: string[]
 }
 
-export function Component(config: Metadata) {
+export function Component(config: Metadata): any {
    return function (constructor: any) {
       const decorator = new ComponentDecorator(config);
       return decorator.apply(constructor);

@@ -1,4 +1,6 @@
 import { Metadata } from "./Component";
+import { DIContainer, Token } from "./DIContainer";
+import 'reflect-metadata';
 
 export class ComponentDecorator {
     private templateUrl: string;
@@ -10,18 +12,19 @@ export class ComponentDecorator {
         this.templateUrl = config.templateUrl;
         this.styleUrls = config.styleUrls;
     }
-    apply(constructor: any) {
+    apply<T>(constructor: Token<T>): Token<T>{
         const original = constructor;
-
         const context = this;
 
-        // Create a new constructor to extend behavior
         const newConstructor: any = function (...args: any[]) {
-            const instance = new original(...args);
-            instance.templateUrl = context.templateUrl; // Store the template URL in the instance
+            const injectedDependencies = DIContainer.resolveDependencies(original);
+            
+            const instance: any = new original(...injectedDependencies);
+            
+            instance['templateUrl'] = context.templateUrl;
 
             // Load styles if provided
-            context.loadStyles(instance);
+            context.loadStyles();
 
             return instance;
         };
@@ -30,7 +33,7 @@ export class ComponentDecorator {
         return newConstructor;
     }
 
-    private loadStyles(instance: any) {
+    private loadStyles() {
         if (this.styleUrls) {
             this.styleUrls.forEach(styleUrl => {
                 const linkTag = document.createElement('link');

@@ -1,6 +1,10 @@
+import { DIContainer } from "../core/DIContainer";
 import { Router } from "../core/Router";
 import { AboutComponent } from "./about/about.component";
 import { HomeComponent } from "./home/home.component";
+import { LoggingService } from "./services/LoggingService";
+
+DIContainer.register(LoggingService, LoggingService);
 
 // Mount the component on a DOM element
 const rootElement = document.getElementById("app");
