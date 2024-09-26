@@ -1,6 +1,12 @@
 import { ComponentDecorator } from "./ComponentDecorator";
 
-export function Component(config: { selector: string; templateUrl: string; styleUrls?: string[] }) {
+export interface Metadata {
+   selector: string
+   templateUrl: string
+   styleUrls?: string[]
+}
+
+export function Component(config: Metadata) {
    return function (constructor: any) {
       const decorator = new ComponentDecorator(config);
       return decorator.apply(constructor);

@@ -1,16 +1,11 @@
-
-interface Config {
-    selector: string;
-    templateUrl: string;
-    styleUrls?: string[]
-}
+import { Metadata } from "./Component";
 
 export class ComponentDecorator {
     private templateUrl: string;
     private styleUrls?: string[];
     private selector: string;
 
-    constructor(config: Config) {
+    constructor(config: Metadata) {
         this.selector = config.selector;
         this.templateUrl = config.templateUrl;
         this.styleUrls = config.styleUrls;
