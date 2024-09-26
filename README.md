@@ -21,10 +21,10 @@ git clone https://github.com/your-username/custom-ts-framework.git
 cd framework
 npm install
 npm start
-```
+`````
 
 
-Usage
+###Usage
 Create a Component: Components are the building blocks of the application. Define a component using the @Component decorator, providing the HTML template and styles.
 
 ```typescript
@@ -43,7 +43,8 @@ export class HomeComponent {
         DIContainer.resolve(myService);
         this.myService.log(); // Use the injected service
     }
-}```
+}
+`````
 Register a Service: Services are injected into components via the Dependency Injection system. Register services in the DIContainer and they will automatically be resolved when required.
 
 ```typescript
@@ -51,7 +52,8 @@ import { DIContainer } from "./core/DIContainer";
 import { MyService } from "./services/MyService";
 
 // Register the service
-DIContainer.register(MyService, MyService);```
+DIContainer.register(MyService, MyService);
+`````
 Define Routes: Use the Router to define routes and navigate between components.
 
 ```typescript
@@ -65,7 +67,8 @@ const router = new Router(document.getElementById('root'));
 router.addRoute('/', HomeComponent);
 
 // Navigate to route
-router.navigate('/');```
+router.navigate('/');
+`````
 
 Project Structure
 ```bash
@@ -82,7 +85,8 @@ Copy code
     DIContainer.ts
     Router.ts
   /services
-    MyService.ts```
+    MyService.ts
+    `````
 
 app/: Contains your application's components.
 core/: Contains the core framework logic such as the Component decorator, DI container, and routing system.
