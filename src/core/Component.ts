@@ -4,6 +4,7 @@ export interface Metadata {
    selector: string
    templateUrl: string
    styleUrls?: string[]
+   imports?: any[]
 }
 
 export function Component(config: Metadata): any {

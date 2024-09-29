@@ -6,11 +6,13 @@ export class ComponentDecorator {
     private templateUrl: string;
     private styleUrls?: string[];
     private selector: string;
+    private imports: any[] | undefined;
 
     constructor(config: Metadata) {
         this.selector = config.selector;
         this.templateUrl = config.templateUrl;
         this.styleUrls = config.styleUrls;
+        this.imports = config.imports;
     }
     apply<T>(constructor: Token<T>): Token<T>{
         const original = constructor;
@@ -22,6 +24,8 @@ export class ComponentDecorator {
             const instance: any = new original(...injectedDependencies);
             
             instance['templateUrl'] = context.templateUrl;
+            instance['imports'] = context.imports;
+            instance['selector'] = context.selector;
 
             // Load styles if provided
             context.loadStyles();

@@ -1,12 +1,15 @@
 import { ComponentDecorator } from "./ComponentDecorator";
+import { ComponentRenderer } from "./ComponentRenderer";
 
 
 export class Router {
    private routes: { [key: string]: any } = {};
    private rootElement: HTMLElement;
+   private renderer: ComponentRenderer;
 
-   constructor(rootElement: HTMLElement) {
+   constructor(rootElement: HTMLElement, renderer: ComponentRenderer) {
       this.rootElement = rootElement;
+      this.renderer = renderer;
 
       // Listen for popstate event (triggered when the user navigates with the browser)
       window.addEventListener('popstate', () => {
@@ -20,16 +23,16 @@ export class Router {
 
    async navigate(path: string, pushState: boolean = true) {
       const component = this.routes[path];
-      
+
       if (component) {
          // Clear the root element before rendering the new component
-         this.rootElement.innerHTML = ''; 
+         this.rootElement.innerHTML = '';
 
          // Create an instance of the component
          const instance = new component(this.rootElement);
 
          // Load the template and styles
-         await this.loadTemplate(instance);
+         await this.renderer.renderComponent(instance);
 
          // Use pushState to update the URL without reloading
          if (pushState) {
@@ -38,15 +41,5 @@ export class Router {
       } else {
          console.error(`No component found for the path: ${path}`);
       }
-   }
-
-   private async loadTemplate(instance: any) {
-      // Assuming the instance has a templateUrl property set in the decorator
-      const templateUrl = instance.templateUrl;
-      const response = await fetch(templateUrl);
-      const html = await response.text();
-
-      // Set the HTML content
-      this.rootElement.innerHTML = html;
    }
 }
