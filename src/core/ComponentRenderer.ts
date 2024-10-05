@@ -16,7 +16,6 @@ export class ComponentRenderer {
         let templateHTML = await this.templateLoader.loadTemplate(templateUrl);
 
         // Apply template interpolation
-        console.log(this.templateInterpolation);
         templateHTML = this.templateInterpolation.interpolateTemplate(templateHTML, instance);
 
 
