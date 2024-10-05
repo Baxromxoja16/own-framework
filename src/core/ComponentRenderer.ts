@@ -16,7 +16,9 @@ export class ComponentRenderer {
         let templateHTML = await this.templateLoader.loadTemplate(templateUrl);
 
         // Apply template interpolation
+        console.log(this.templateInterpolation);
         templateHTML = this.templateInterpolation.interpolateTemplate(templateHTML, instance);
+
 
         // Convert the interpolated string into a DocumentFragment
         const nodeHTML = this.stringToHTML(templateHTML); // This method converts the string to HTML nodes

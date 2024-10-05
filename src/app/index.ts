@@ -1,6 +1,7 @@
 import { ComponentRenderer } from "../core/ComponentRenderer";
 import { DIContainer } from "../core/DIContainer";
 import { Router } from "../core/Router";
+import { TemplateInterpolation } from "../core/TemplateInterpolation";
 import { TemplateLoader } from "../core/TemplateLoader";
 import { AboutComponent } from "./about/about.component";
 import { HomeComponent } from "./home/home.component";
@@ -13,7 +14,8 @@ const rootElement = document.getElementById("app");
 if (rootElement) {
 
    const templateLoader = new TemplateLoader();
-   const componentRenderer = new ComponentRenderer(rootElement, templateLoader);
+   const templateInterpolation = new TemplateInterpolation();
+   const componentRenderer = new ComponentRenderer(rootElement, templateLoader, templateInterpolation);
 
    // Pass rootElement and componentRenderer to the Router
    const router = new Router(rootElement, componentRenderer);
