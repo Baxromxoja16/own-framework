@@ -1,7 +1,11 @@
+import { ITemplateInterpolation } from './TemplateInterpolation';
 import { ITemplateLoader } from './TemplateLoader';
 
 export class ComponentRenderer {
-    constructor(private rootElement: HTMLElement, private templateLoader: ITemplateLoader) { }
+    constructor(
+        private rootElement: HTMLElement, 
+        private templateLoader: ITemplateLoader, 
+        private templateInterpolation: ITemplateInterpolation) { }
 
     async renderComponent(instance: any, selector?: string): Promise<void> {
         const templateUrl = instance.templateUrl;
@@ -9,7 +13,15 @@ export class ComponentRenderer {
             throw new Error('Component must have a templateUrl');
         }
 
-        const nodeHTML = await this.templateLoader.loadTemplate(templateUrl);
+        let templateHTML = await this.templateLoader.loadTemplate(templateUrl);
+
+        // Apply template interpolation
+        templateHTML = this.templateInterpolation.interpolateTemplate(templateHTML, instance);
+
+        // Convert the interpolated string into a DocumentFragment
+        const nodeHTML = this.stringToHTML(templateHTML); // This method converts the string to HTML nodes
+
+        // Append to the DOM
         this.appendToRoot(nodeHTML, selector);
 
         if (instance.imports) {
@@ -39,5 +51,12 @@ export class ComponentRenderer {
                 await this.renderComponent(childInstance, childInstance.selector);
             });
         }
+    }
+
+    // Helper method to convert a string to DocumentFragment
+    private stringToHTML(str: string): DocumentFragment {
+        const template = document.createElement('template');
+        template.innerHTML = str.trim();
+        return template.content;
     }
 }

@@ -9,5 +9,5 @@ import { NavbarComponent } from "../navbar/navbar.component";
     imports: [NavbarComponent, ButtonComponent],
  })
 export class HomeComponent {
-
+    text = "adaw ad awd ad aw   ";
 }
