@@ -96,20 +96,21 @@ services/: Contains the services that can be injected into components.
 Feel free to submit issues or pull requests if you want to contribute to improving the framework!
 `````
 
-###Template interpolation
-Displaying values with interpolation
-Interpolation refers to embedding expressions into marked up text. By default, interpolation uses the double curly braces {{ and }} as delimiters.
+# Angular Interpolation Example
 
-To illustrate how interpolation works, consider an Angular component that contains a currentCustomer variable:
+This project demonstrates how to use **interpolation** in Angular for dynamic data binding in templates.
 
-```currentCustomer = 'Maria';`````
+## Overview
 
-Use interpolation to display the value of this variable in the corresponding component template:
+Interpolation allows you to embed component properties directly into your HTML templates using double curly braces `{{ }}`. This feature enables you to display values dynamically based on the component's state.
 
-```<h3>Current customer: {{ currentCustomer }}</h3>`````
+## Example
 
-Angular replaces currentCustomer with the string value of the corresponding component property. In this case, the value is Maria
+### Displaying Current Customer
 
-In the following example, Angular evaluates the title and itemImageUrl properties to display some title text and an image.
-```<p>{{title}}</p>
-<div><img alt="item" src="{{itemImageUrl}}"></div>`````
+In the Angular component, we define a property called `currentCustomer`:
+
+```typescript
+export class AppComponent {
+  currentCustomer = 'Maria';
+}
