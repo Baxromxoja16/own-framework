@@ -67,8 +67,7 @@ const router = new Router(document.getElementById('root'));
 router.addRoute('/', HomeComponent);
 
 // Navigate to route
-router.navigate('/');
-`````
+router.navigate('/');`````
 
 Project Structure
 ```bash
@@ -85,8 +84,7 @@ Copy code
     DIContainer.ts
     Router.ts
   /services
-    MyService.ts
-    `````
+    MyService.ts`````
 
 app/: Contains your application's components.
 core/: Contains the core framework logic such as the Component decorator, DI container, and routing system.
@@ -94,7 +92,6 @@ services/: Contains the services that can be injected into components.
 
 ## Contributing
 Feel free to submit issues or pull requests if you want to contribute to improving the framework!
-`````
 
 # Angular Interpolation Example
 
