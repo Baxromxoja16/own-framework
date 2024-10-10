@@ -1,3 +1,4 @@
+import { OnInit } from './Lifecycle';
 import { ITemplateInterpolation } from './TemplateInterpolation';
 import { ITemplateLoader } from './TemplateLoader';
 
@@ -22,12 +23,22 @@ export class ComponentRenderer {
         // Convert the interpolated string into a DocumentFragment
         const nodeHTML = this.stringToHTML(templateHTML); // This method converts the string to HTML nodes
 
+        // Call ngOnInit if the component implements it
+        if (this.isOnInit(instance)) {
+            instance.ngOnInit();
+        }
+        
+        
         // Append to the DOM
         this.appendToRoot(nodeHTML, selector);
 
         if (instance.imports) {
             this.renderImportedComponents(instance);
         }
+    }
+
+    private isOnInit(instance: any): instance is OnInit {
+        return typeof instance.ngOnInit === 'function';
     }
 
     private appendToRoot(nodeHTML: DocumentFragment, selector?: string): void {
