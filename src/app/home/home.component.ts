@@ -1,5 +1,5 @@
 import {Component} from "../../core/Component";
-import { OnInit } from "../../core/Lifecycle";
+import { OnDestroy, OnInit } from "../../core/Lifecycle";
 import { ButtonComponent } from "../button/button.component";
 import { NavbarComponent } from "../navbar/navbar.component";
 
@@ -9,7 +9,7 @@ import { NavbarComponent } from "../navbar/navbar.component";
     styleUrls: ['/src/app/home/home.component.css'],
     imports: [NavbarComponent, ButtonComponent],
  })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
     text = "adaw ad awd ad aw   ";
 
     constructor(){
@@ -18,5 +18,9 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         console.log('Component initialized');
+    }
+
+    ngOnDestroy() {
+        console.log('Component destroyed');
     }
 }

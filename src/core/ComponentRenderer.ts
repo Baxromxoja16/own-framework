@@ -1,4 +1,4 @@
-import { OnInit } from './Lifecycle';
+import { OnDestroy, OnInit } from './Lifecycle';
 import { ITemplateInterpolation } from './TemplateInterpolation';
 import { ITemplateLoader } from './TemplateLoader';
 
@@ -35,10 +35,19 @@ export class ComponentRenderer {
         if (instance.imports) {
             this.renderImportedComponents(instance);
         }
+
+        // Call ngOnDestroy when the component is removed from DOM
+        if (this.isOnDestroy(instance)) {
+            window.addEventListener('beforeunload', () => instance.ngOnDestroy());
+        }
     }
 
     private isOnInit(instance: any): instance is OnInit {
         return typeof instance.ngOnInit === 'function';
+    }
+
+    private isOnDestroy(instance: any): instance is OnDestroy {
+        return typeof instance.ngOnDestroy === 'function';
     }
 
     private appendToRoot(nodeHTML: DocumentFragment, selector?: string): void {
