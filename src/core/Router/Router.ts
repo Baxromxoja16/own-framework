@@ -1,5 +1,5 @@
-import { ComponentDecorator } from "./ComponentDecorator";
-import { ComponentRenderer } from "./ComponentRenderer";
+import { ComponentDecorator } from "./Component/ComponentDecorator";
+import { ComponentRenderer } from "./Component/ComponentRenderer";
 
 
 export class Router {

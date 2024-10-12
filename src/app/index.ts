@@ -1,8 +1,8 @@
-import { ComponentRenderer } from "../core/ComponentRenderer";
-import { DIContainer } from "../core/DIContainer";
-import { Router } from "../core/Router";
-import { TemplateInterpolation } from "../core/TemplateInterpolation";
-import { TemplateLoader } from "../core/TemplateLoader";
+import { ComponentRenderer } from "../core/Component/ComponentRenderer";
+import { DIContainer } from "../core/DI/DIContainer";
+import { Router } from "../core/Router/Router";
+import { TemplateInterpolation } from "../core/Template/TemplateInterpolation";
+import { TemplateLoader } from "../core/Template/TemplateLoader";
 import { AboutComponent } from "./about/about.component";
 import { HomeComponent } from "./home/home.component";
 import { LoggingService } from "./services/LoggingService";

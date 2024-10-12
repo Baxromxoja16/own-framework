@@ -1,4 +1,4 @@
-import {Component} from "../../core/Component";
+import {Component} from "../../core/Component/Component";
 
 @Component({
     selector: '#app-about', // The DOM element where this component will be rendered

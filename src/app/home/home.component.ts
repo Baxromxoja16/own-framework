@@ -1,4 +1,4 @@
-import {Component} from "../../core/Component";
+import {Component} from "../../core/Component/Component";
 import { OnDestroy, OnInit } from "../../core/Lifecycle";
 import { ButtonComponent } from "../button/button.component";
 import { NavbarComponent } from "../navbar/navbar.component";

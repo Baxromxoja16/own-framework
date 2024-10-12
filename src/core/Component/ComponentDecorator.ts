@@ -1,5 +1,5 @@
 import { Metadata } from "./Component";
-import { DIContainer, Token } from "./DIContainer";
+import { DIContainer, Token } from "../DI/DIContainer";
 import 'reflect-metadata';
 
 export class ComponentDecorator {

@@ -1,4 +1,4 @@
-import {Component} from "../../core/Component";
+import {Component} from "../../core/Component/Component";
 
 @Component({
     selector: 'app-navbar', // The DOM element where this component will be rendered

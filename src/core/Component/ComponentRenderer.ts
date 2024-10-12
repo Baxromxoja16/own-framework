@@ -1,6 +1,6 @@
-import { OnDestroy, OnInit } from './Lifecycle';
-import { ITemplateInterpolation } from './TemplateInterpolation';
-import { ITemplateLoader } from './TemplateLoader';
+import { OnDestroy, OnInit } from '../Lifecycle';
+import { ITemplateInterpolation } from '../Template/TemplateInterpolation';
+import { ITemplateLoader } from '../Template/TemplateLoader';
 
 export class ComponentRenderer {
     constructor(
